@@ -2,6 +2,7 @@ package com.example.firebasecrud;
 
 import android.content.Context;
 import android.media.Image;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,15 +16,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
-    List<Courses> coursesList;
+    ArrayList<Courses> coursesList;
     Context context;
     int lastPos = -1;
 
-    public MyAdapter(List<Courses> coursesList, Context context) {
+    public MyAdapter(ArrayList<Courses> coursesList, Context context) {
         this.coursesList = coursesList;
         this.context = context;
     }

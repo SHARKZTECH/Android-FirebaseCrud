@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -29,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     FirebaseDatabase fDb;
     DatabaseReference dbRef;
     MyAdapter myAdapter;
-    List<Courses> coursesList;
+    ArrayList<Courses> coursesList;
     RecyclerView recyclerView;
     FloatingActionButton floatingActionButton;
     @Override
@@ -39,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
         floatingActionButton=findViewById(R.id.addCourse);
         recyclerView=findViewById(R.id.recycler);
-        fDb=FirebaseDatabase.getInstance("Courses");
+        fDb=FirebaseDatabase.getInstance();
         dbRef=fDb.getReference();
         coursesList=new ArrayList<>();
 
@@ -57,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 coursesList.add(snapshot.getValue(Courses.class));
                 myAdapter.notifyDataSetChanged();
+                Log.d("Courses",coursesList.toString());
             }
 
             @Override
