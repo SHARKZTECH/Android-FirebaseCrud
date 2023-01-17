@@ -14,6 +14,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.webkit.URLUtil;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -48,6 +50,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         holder.name.setText(course.getName());
         holder.price.setText("$"+course.getPrice());
         Picasso.get().load(course.getImage()).into(holder.imageView);
+
+        setAnimation(holder.imageView,position);
+
+        holder.itemView.setOnClickListener(view -> {
+            displayBottomSheet(course);
+        });
     }
     private void displayBottomSheet(Courses course) {
         // on below line we are creating our bottom sheet dialog.
@@ -97,8 +105,15 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
                 // on below line we are navigating to browser
                 // for displaying course details from its url
                 Intent i = new Intent(Intent.ACTION_VIEW);
-                i.setData(Uri.parse(course.getLink()));
-                context.startActivity(i);
+
+                if(URLUtil.isValidUrl(course.getLink())){
+                    i.setData(Uri.parse(course.getLink()));
+                    context.startActivity(i);
+                }else{
+                    Toast.makeText(context, "Sorry Url provided was invalid!", Toast.LENGTH_SHORT).show();
+
+                }
+
             }
         });
     }

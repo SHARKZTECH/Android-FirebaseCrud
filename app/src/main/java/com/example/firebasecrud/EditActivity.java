@@ -3,6 +3,7 @@ package com.example.firebasecrud;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -78,6 +79,7 @@ public class EditActivity extends AppCompatActivity {
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     progressBar.setVisibility(View.GONE);
                     dbRef.updateChildren(map);
+                    startActivity(new Intent(getApplicationContext(),MainActivity.class));
                     Toast.makeText(EditActivity.this, "Updated!", Toast.LENGTH_SHORT).show();
                 }
                 @Override
