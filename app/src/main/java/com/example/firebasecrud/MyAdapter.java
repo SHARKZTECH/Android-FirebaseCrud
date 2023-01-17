@@ -53,7 +53,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         // on below line we are creating our bottom sheet dialog.
         final BottomSheetDialog bottomSheetTeachersDialog = new BottomSheetDialog(context, R.style.BottomSheetDialogTheme);
         // on below line we are inflating our layout file for our bottom sheet.
-        View layout = LayoutInflater.from(context).inflate(R.layout.bottom_layout,);
+
+        View layout = LayoutInflater.from(context).inflate(R.layout.bottom_layout,null);
         // setting content view for bottom sheet on below line.
         bottomSheetTeachersDialog.setContentView(layout);
         // on below line we are setting a cancelable
