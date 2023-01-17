@@ -9,7 +9,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -33,15 +35,17 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<Courses> coursesList;
     RecyclerView recyclerView;
     FloatingActionButton floatingActionButton;
+    ProgressBar progressBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        progressBar=findViewById(R.id.progressBar);
         floatingActionButton=findViewById(R.id.addCourse);
         recyclerView=findViewById(R.id.recycler);
         fDb=FirebaseDatabase.getInstance();
-        dbRef=fDb.getReference();
+        dbRef=fDb.getReference("Courses");
         coursesList=new ArrayList<>();
 
         floatingActionButton.setOnClickListener(view -> {
@@ -53,26 +57,35 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(myAdapter);
 
+        progressBar.setVisibility(View.VISIBLE);
+        getCourses();
+
+    }
+     private void getCourses(){
+        coursesList.clear();
         dbRef.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 coursesList.add(snapshot.getValue(Courses.class));
+                progressBar.setVisibility(View.GONE);
                 myAdapter.notifyDataSetChanged();
-                Log.d("Courses",coursesList.toString());
             }
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                progressBar.setVisibility(View.GONE);
                 myAdapter.notifyDataSetChanged();
             }
 
             @Override
             public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-                  myAdapter.notifyDataSetChanged();
+                progressBar.setVisibility(View.GONE);
+                myAdapter.notifyDataSetChanged();
             }
 
             @Override
             public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                progressBar.setVisibility(View.GONE);
                 myAdapter.notifyDataSetChanged();
             }
 
@@ -81,7 +94,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
 
     }
 }
