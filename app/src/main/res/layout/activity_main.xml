@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".MainActivity"
     android:orientation="vertical"
     android:background="@color/black_shade_1">
@@ -17,8 +16,8 @@
         android:id="@+id/addCourse"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/black_shade_1"
-        android:backgroundTint="@color/black_shade_2"
+        android:background="@color/white"
+        android:backgroundTint="@color/white"
         android:src="@drawable/ic_add"
         android:tint="@color/white"
         android:layout_alignParentBottom="true"

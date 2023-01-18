@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
+<com.google.android.material.card.MaterialCardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:layout_margin="5dp"
+    app:cardElevation="8dp"
     app:cardCornerRadius="4dp"
-    app:cardElevation="3dp">
+    app:strokeWidth="2dp"
+    app:strokeColor="@color/black_shade_3">
+
+
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/black_shade_1">
+        android:background="@color/black_shade_2">
 
         <!--image view for our course-->
         <ImageView
@@ -20,6 +24,11 @@
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:scaleType="centerCrop" />
+        <View
+            android:layout_below="@id/image"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/black_shade_3"/>
 
         <!--text view for course name-->
         <TextView
@@ -30,7 +39,7 @@
             android:layout_margin="3dp"
             android:layout_toStartOf="@id/price"
             android:layout_toLeftOf="@id/price"
-            android:padding="4dp"
+            android:padding="6dp"
             android:text="Course Name"
             android:textColor="@color/white"
             android:textSize="15sp"
@@ -46,11 +55,11 @@
             android:layout_alignParentRight="true"
             android:layout_margin="3dp"
             android:gravity="center"
-            android:padding="4dp"
+            android:padding="6dp"
             android:text="Price"
             android:textColor="@color/white"
             android:textSize="15sp"
             android:textStyle="bold" />
     </RelativeLayout>
 
-</androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>
