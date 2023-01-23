@@ -125,6 +125,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             lastPos = position;
         }
     }
+
     @Override
     public int getItemCount() {
         return coursesList.size();

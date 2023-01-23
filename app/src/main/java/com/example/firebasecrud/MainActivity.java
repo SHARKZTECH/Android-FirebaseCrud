@@ -62,7 +62,15 @@ public class MainActivity extends AppCompatActivity {
         getCourses();
 
     }
-     private void getCourses(){
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finishAffinity();
+        finish();
+    }
+
+    private void getCourses(){
         coursesList.clear();
         dbRef.addChildEventListener(new ChildEventListener() {
             @Override
